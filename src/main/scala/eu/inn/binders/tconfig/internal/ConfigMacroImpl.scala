@@ -20,4 +20,14 @@ private [tconfig] trait ConfigMacroImpl {
     //println(block)
     block
   }
+  def readValue[O: c.WeakTypeTag]: c.Tree = {
+    val block = q"""{
+      val t = ${c.prefix.tree}
+      val f = eu.inn.binders.tconfig.SerializerFactory.findFactory()
+      val d = f.createDeserializer(Option(t.configValue), None)
+      d.unbind[${weakTypeOf[O]}]
+    }"""
+    //println(block)
+    block
+  }
 }
