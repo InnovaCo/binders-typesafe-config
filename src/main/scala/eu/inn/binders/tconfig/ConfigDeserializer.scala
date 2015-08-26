@@ -34,7 +34,7 @@ abstract class ConfigDeserializerBase[C <: Converter, I <: Deserializer[C]]
   
   protected def createFieldDeserializer(fieldValue: Option[ConfigValue], fieldName: Option[String]): I = ??? //new ConfigDeserializer[C] (fieldName, value)
 
-  def isNull: Boolean = configValue.isEmpty
+  def isNull: Boolean = valueType == ConfigValueType.NULL
   def readString(): String = configValue.get.unwrapped().toString
   def readInt(): Int = configValue.get.unwrapped() match {
     case i: java.lang.Integer ⇒ i
