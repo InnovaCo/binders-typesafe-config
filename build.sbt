@@ -4,9 +4,9 @@ version := "0.1"
 
 organization := "eu.inn"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
-crossScalaVersions := Seq("2.11.6", "2.10.4")
+crossScalaVersions := Seq("2.11.7", "2.10.4")
 
 resolvers ++= Seq(
     Resolver.sonatypeRepo("public")

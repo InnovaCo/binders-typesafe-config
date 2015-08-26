@@ -69,7 +69,7 @@ abstract class ConfigDeserializerBase[C <: Converter, I <: Deserializer[C]]
     case i: java.lang.Integer ⇒ BigDecimal(i)
     case l: java.lang.Long ⇒ BigDecimal(l)
     case d: java.lang.Double ⇒ BigDecimal(d)
-    case f: java.lang.Float ⇒ BigDecimal(f)
+    case f: java.lang.Float ⇒ BigDecimal(f.toDouble)
     case s: String ⇒ ConfigDeserializer.stringToBigDecimal(s)
     case _ ⇒ deserializationFailed("BigDecimal")
   }
