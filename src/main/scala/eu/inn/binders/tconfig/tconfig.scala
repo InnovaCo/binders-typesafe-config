@@ -10,6 +10,6 @@ import scala.reflect.runtime.universe._
 
 package object tconfig {
   implicit class ConfigReader(val config: Config) extends AnyVal{
-    def readObject[O](path: String): O = macro ConfigMacro.readConfig[O]
+    def read[O](path: String): O = macro ConfigMacro.read[O]
   }
 }

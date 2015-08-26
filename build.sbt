@@ -1,6 +1,6 @@
 name := "binders-typesafe-config"
 
-version := "0.1"
+version := "0.2"
 
 organization := "eu.inn"
 
@@ -14,7 +14,7 @@ resolvers ++= Seq(
 
 libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 
-libraryDependencies += "eu.inn" %% "binders-core" % "0.6.57"
+libraryDependencies += "eu.inn" %% "binders-core" % "0.8.60"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
 

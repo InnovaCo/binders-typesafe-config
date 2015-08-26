@@ -7,13 +7,13 @@ import scala.language.reflectiveCalls
 import scala.reflect.macros.Context
 
 private [tconfig] object ConfigMacro {
-  def readConfig[O: c.WeakTypeTag]
+  def read[O: c.WeakTypeTag]
     (c: Context)
     (path: c.Expr[String]): c.Expr[O] = {
     val c0: c.type = c
     val bundle = new {
       val c: c0.type = c0
     } with ConfigMacroImpl
-    c.Expr[O](bundle.readConfig[O](path))
+    c.Expr[O](bundle.read[O](path))
   }
 }

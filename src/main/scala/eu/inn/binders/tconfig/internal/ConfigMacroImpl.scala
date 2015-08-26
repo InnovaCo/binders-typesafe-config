@@ -9,7 +9,7 @@ import scala.reflect.macros.Context
 private [tconfig] trait ConfigMacroImpl {
   val c: Context
   import c.universe._
-  def readConfig[O: c.WeakTypeTag](path: c.Expr[String]): c.Tree = {
+  def read[O: c.WeakTypeTag](path: c.Expr[String]): c.Tree = {
     val block = q"""{
       val t = ${c.prefix.tree}
       val c = t.config.getValue($path)
@@ -17,7 +17,7 @@ private [tconfig] trait ConfigMacroImpl {
       val d = f.createDeserializer(Option(c), Option($path))
       d.unbind[${weakTypeOf[O]}]
     }"""
-    println(block)
+    //println(block)
     block
   }
 }
