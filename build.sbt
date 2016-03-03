@@ -1,6 +1,6 @@
 name := "binders-typesafe-config"
 
-version := "0.3"
+version := "0.4"
 
 organization := "eu.inn"
 
@@ -14,7 +14,7 @@ resolvers ++= Seq(
 
 libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 
-libraryDependencies += "eu.inn" %% "binders-core" % "0.10.73"
+libraryDependencies += "eu.inn" %% "binders-core" % "0.11.74"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
 
@@ -28,7 +28,7 @@ libraryDependencies := {
     // in Scala 2.10, quasiquotes are provided by macro paradise
     case Some((2, 10)) =>
       libraryDependencies.value ++ Seq(
-        compilerPlugin("org.scalamacros" % "paradise" % "2.1.0-M5" cross CrossVersion.full),
-        "org.scalamacros" %% "quasiquotes" % "2.1.0-M5" cross CrossVersion.binary)
+        compilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+        "org.scalamacros" %% "quasiquotes" % "2.1.0" cross CrossVersion.binary)
   }
 }
