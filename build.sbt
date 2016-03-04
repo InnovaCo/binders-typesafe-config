@@ -14,7 +14,7 @@ resolvers ++= Seq(
 
 libraryDependencies += "com.typesafe" % "config" % "1.2.1"
 
-libraryDependencies += "eu.inn" %% "binders-core" % "0.11.74"
+libraryDependencies += "eu.inn" %% "binders-core" % "0.11.75"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
 
