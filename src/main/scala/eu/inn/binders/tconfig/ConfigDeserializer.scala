@@ -2,7 +2,7 @@ package eu.inn.binders.tconfig
 
 import com.typesafe.config.{ConfigValue, ConfigValueType}
 import eu.inn.binders.core.Deserializer
-import eu.inn.binders.dynamic.Value
+import eu.inn.binders.value.Value
 import eu.inn.binders.naming.Converter
 
 import scala.collection.JavaConversions
@@ -75,7 +75,7 @@ abstract class ConfigDeserializerBase[C <: Converter, I <: Deserializer[C]]
   }
 
   def readValue(): Value = {
-    import eu.inn.binders.dynamic._
+    import eu.inn.binders.value._
     valueType match {
       case ConfigValueType.NUMBER ⇒ Number(readBigDecimal())
       case ConfigValueType.BOOLEAN ⇒ Bool(readBoolean())
