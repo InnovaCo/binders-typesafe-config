@@ -7,6 +7,7 @@ import eu.inn.binders.naming.Converter
 
 import scala.collection.JavaConversions
 import scala.collection.mutable.ArrayBuffer
+import scala.concurrent.duration._
 import scala.language.experimental.macros
 
 class ConfigDeserializeException(message: String) extends RuntimeException(message)
@@ -72,6 +73,15 @@ abstract class ConfigDeserializerBase[C <: Converter, I <: Deserializer[C]]
     case f: java.lang.Float ⇒ BigDecimal(f.toDouble)
     case s: String ⇒ ConfigDeserializer.stringToBigDecimal(s)
     case _ ⇒ deserializationFailed("BigDecimal")
+  }
+
+  def readDuration(): Duration = configValue.get.unwrapped() match {
+    case i: java.lang.Integer ⇒ Duration(i.toLong, MILLISECONDS)
+    case l: java.lang.Long ⇒ Duration(l, MILLISECONDS)
+    case d: java.lang.Double ⇒ Duration(d, MILLISECONDS)
+    case f: java.lang.Float ⇒ Duration(f.toDouble, MILLISECONDS)
+    case s: String ⇒ Duration(s)
+    case _ ⇒ deserializationFailed("Duration")
   }
 
   def readValue(): Value = {
