@@ -4,9 +4,12 @@ import org.scalatest.{FlatSpec, Matchers}
 
 import scala.concurrent.duration._
 
-case class ObjectWithTimeUnit(duration: Duration, optionalDuration: Option[Duration], optionalDuration2: Option[Duration])
+case class ObjectWithTimeUnit(duration: Duration,
+                              optionalDuration: Option[Duration],
+                              optionalDuration2: Option[Duration],
+                              finiteDuration: Duration)
 
-class TestTimeUnitDeserializer extends FlatSpec with Matchers {
+class TestDurationDeserializer extends FlatSpec with Matchers {
 
   import eu.inn.binders.tconfig._
 
@@ -14,10 +17,11 @@ class TestTimeUnitDeserializer extends FlatSpec with Matchers {
     val config = ConfigFactory.parseString("""
       obj.duration = 10s
       obj.optional-duration2 = 6min
+      obj.finite-duration = 3sec
     """)
 
     val o = config.read[ObjectWithTimeUnit]("obj")
-    val t = ObjectWithTimeUnit(10.seconds, None, Some(6.minutes))
+    val t = ObjectWithTimeUnit(10.seconds, None, Some(6.minutes), 3.seconds)
     assert(t === o)
   }
 }
