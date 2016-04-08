@@ -84,6 +84,13 @@ abstract class ConfigDeserializerBase[C <: Converter, I <: Deserializer[C]]
     case _ ⇒ deserializationFailed("Duration")
   }
 
+  def readFiniteDuration(): FiniteDuration = {
+    readDuration() match {
+      case finite: FiniteDuration ⇒ finite
+      case other ⇒ deserializationFailed(s"$other is not finite")
+    }
+  }
+
   def readValue(): Value = {
     import eu.inn.binders.value._
     valueType match {
